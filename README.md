@@ -89,6 +89,19 @@ Singapore_Flat_Price_Prediction/
 
 > **Note:** The structure above represents the recommended clean application layout. Include the files only if they are present in your final repository. The large trained model file may need to be downloaded separately if it is not committed to GitHub.
 
+## Model File
+
+The trained Random Forest model is used by the Streamlit application to generate resale price predictions.
+
+Due to the large size of the serialized model file, approximately 800 MB, it is not included directly in this GitHub repository.
+
+The model was trained as part of the Jupyter Notebook workflow.
+
+To run the prediction application, the trained model file and the required encoder files must be available locally in the project directory.
+
+The application cannot generate predictions without the trained model file.
+
+
 ## 📊 Dataset
 
 The project uses Singapore HDB resale transaction data.
