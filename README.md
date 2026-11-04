@@ -1,199 +1,308 @@
-# Singapore HDB Resale Flat Price Prediction
+# 🇸🇬 Singapore Flat Resale Price Prediction
 
-A machine learning project that explores Singapore's HDB resale housing market and predicts resale prices based on property characteristics.
+A machine learning project that explores Singapore's HDB resale housing market and predicts resale prices based on property attributes.
 
-The project combines data analysis, regression modelling, interactive visualisation, and a Streamlit application to explore historical resale trends and estimate property prices.
+This project combines **data preprocessing, exploratory data analysis, machine learning, and an interactive Streamlit application** to help users explore historical resale prices and estimate the price of a flat using its characteristics.
 
-## Project Overview
+## 📌 Project Overview
 
-Singapore's HDB resale prices vary according to several factors, including location, flat type, floor area, storey range, flat model, and remaining lease.
+The Singapore HDB resale market contains transactions with different property types, locations, floor areas, and remaining lease periods.
 
-This project explores historical resale transaction data and builds machine learning models to estimate resale prices from selected property attributes.
+The objective of this project is to analyze historical resale transactions, identify pricing patterns, compare machine learning models, and build an interactive application where users can explore market statistics and predict resale prices.
 
-It also includes an interactive application where users can explore market trends and generate a resale price prediction.
+The project includes:
 
-## Project Objectives
+- Historical resale price analysis
+- Exploratory data visualization
+- Data preprocessing and categorical encoding
+- Machine learning model comparison
+- Random Forest resale price prediction
+- Interactive Streamlit application
+- Singapore town-level map visualization
 
-- Explore historical HDB resale transaction data.
-- Prepare and process property-related features.
-- Compare multiple regression models.
-- Evaluate model performance using standard regression metrics.
-- Build an interactive application for resale price prediction.
-- Visualise historical prices and property statistics across Singapore towns.
+## 🎯 Project Objectives
 
-## Project Workflow
+- Explore historical Singapore HDB resale transaction data.
+- Understand resale price patterns across towns and flat characteristics.
+- Prepare and transform data for machine learning.
+- Compare Decision Tree, Random Forest, and XGBoost regression models.
+- Select a suitable model based on evaluation metrics.
+- Build an interactive application for property exploration and price prediction.
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Programming | Python |
+| Data Processing | Pandas, NumPy |
+| Data Storage | Parquet |
+| Machine Learning | Scikit-learn, XGBoost |
+| Model Evaluation | R², RMSE, MAE |
+| Visualization | Plotly |
+| Interactive Application | Streamlit |
+| Maps | Folium, Streamlit-Folium |
+| Image Processing | Pillow |
+| Categorical Encoding | Scikit-learn Label Encoding |
+| Model Persistence | Pickle |
+
+## 📂 Project Structure
 
 ```text
-Historical HDB Resale Data
-          |
-          v
-Data Preparation & Processing
-          |
-          v
-Feature Encoding
-          |
-          v
-Regression Model Training
-          |
-          v
-Model Evaluation
-          |
-          v
-Saved Random Forest Model
-          |
-          v
-Streamlit Application
-          |
-          +---- Price Prediction
-          |
-          +---- Historical Price Analysis
-          |
-          +---- Interactive Town Map
+Singapore_Flat_Price_Prediction/
+│
+├── README.md
+│
+├── mainscreen.py
+├── home.py
+├── stats.py
+├── predictor.py
+│
+├── Singapore_Data.xlsx
+├── singapore_data.parquet
+│
+├── encoders.pkl
+├── random_forest_model.pkl
+│
+├── Singapore_1.jpg
+├── Singapore_2.jpg
+├── Singapore_3.jpg
+│
+└── Singapore Resale Flat Prices Predicting.ipynb
 ```
 
-## Machine Learning
+### File Description
 
-The notebook explores three regression algorithms:
-
-- Decision Tree Regressor
-- Random Forest Regressor
-- XGBoost Regressor
-
-The models are evaluated using:
-
-| Metric | Purpose |
+| File | Description |
 |---|---|
-| R² Score | Measures how well the model explains variation in resale prices |
-| RMSE | Measures prediction error while penalising larger errors |
-| MAE | Measures the average absolute prediction error |
+| `mainscreen.py` | Main Streamlit application entry point. Provides navigation between Home, Stats, and Price Predictor. |
+| `home.py` | Displays the project introduction, Singapore images, and application overview. |
+| `stats.py` | Provides interactive resale price analysis, town-level statistics, and feature comparisons. |
+| `predictor.py` | Collects user inputs, loads the trained model and encoders, predicts resale prices, and displays location information. |
+| `Singapore_Data.xlsx` | Source dataset used for the project. |
+| `singapore_data.parquet` | Processed dataset used by the Streamlit application. |
+| `encoders.pkl` | Saved categorical encoders and town-to-street mapping required by the prediction application. |
+| `random_forest_model.pkl` | Trained Random Forest regression model used for price prediction. |
+| `Singapore_1.jpg` | Singapore image displayed in the Home section. |
+| `Singapore_2.jpg` | Singapore image displayed in the Home section. |
+| `Singapore_3.jpg` | Singapore image displayed in the Home section. |
+| `Singapore Resale Flat Prices Predicting.ipynb` | Jupyter Notebook containing data exploration, preprocessing, model training, evaluation, and prediction experiments. |
 
-The notebook includes model training, evaluation, and saving the trained Random Forest model along with the encoders used for categorical features.
+> **Note:** The structure above represents the recommended clean application layout. Include the files only if they are present in your final repository. The large trained model file may need to be downloaded separately if it is not committed to GitHub.
 
-*Actual evaluation scores will be included from the executed notebook results.*
+## 📊 Dataset
 
-## Streamlit Application
+The project uses Singapore HDB resale transaction data.
 
-The project includes an interactive Streamlit application with two main areas.
-
-### 1. Singapore Flat Resale Price Predictor
-
-Users can provide property details such as:
+The dataset contains property information such as:
 
 - Transaction year
 - Town
 - Street name
 - Flat type
 - Storey range
-- Flat model
 - Floor area
 - Remaining lease
+- Flat model
+- Resale price
 
-The application processes the selected inputs using the saved encoders and Random Forest model.
+The data is prepared and transformed into a format suitable for analysis and machine learning.
 
-After the required inputs are selected, users can generate a predicted resale price.
+The processed dataset is stored in Parquet format for use in the Streamlit application.
 
-The application also displays a town-level map with property information, including the number of properties and average resale price available in the dataset.
+## 🔍 Exploratory Data Analysis
 
-### 2. Historical Price Analysis
+The project explores resale transactions through different property attributes.
 
-The statistics section provides interactive analysis of the resale market.
+The analysis includes:
 
-Users can explore:
-
-- Number of properties available in each town
+- Number of properties available across towns
 - Distribution of flat types across towns
-- Average resale price trends over time
-- Historical price trends for selected towns
+- Average resale price trends over the years
+- Town-level resale price comparisons
 - Price comparisons by flat type
 - Price comparisons by storey range
 - Price comparisons by flat model
-- Combined property characteristic comparisons
+- Combined feature analysis
 
-The visualisations use Plotly to support interactive exploration.
+Interactive visualizations are created using Plotly.
 
-## Interactive Map
+## 🤖 Machine Learning
 
-The prediction application uses Folium to display the selected town on a map.
+Three regression models were evaluated:
 
-The map includes town-level information such as:
+1. Decision Tree Regressor
+2. Random Forest Regressor
+3. XGBoost Regressor
 
-- Number of properties
-- Average resale price
+The models were evaluated using:
 
-The map is displayed after a prediction is generated.
+- **R²** — measures how well the model explains variation in resale prices.
+- **RMSE** — measures prediction error while giving greater weight to larger errors.
+- **MAE** — measures the average absolute prediction error.
 
-## Technology Stack
+### Model Evaluation Results
 
-| Area | Technologies |
-|---|---|
-| Programming | Python |
-| Data processing | Pandas |
-| Machine learning | Scikit-learn, XGBoost |
-| Model persistence | Pickle |
-| Application | Streamlit |
-| Visualisation | Plotly, Folium |
-| Map integration | Streamlit-Folium |
-| Data storage | Parquet |
+The following results were obtained from the project notebook:
 
-## Repository Contents
+| Model | R² | RMSE | MAE |
+|---|---:|---:|---:|
+| Decision Tree | 0.969677 | 31,497.64 | 20,577.27 |
+| Random Forest | **0.979403** | **25,959.31** | **17,717.28** |
+| XGBoost | 0.962046 | 35,238.64 | 24,365.53 |
 
-- **Jupyter Notebook:** Data preparation, model experiments, training, and evaluation.
-- **Streamlit application:** Interactive price prediction and historical analysis.
-- **Saved model:** Trained Random Forest model.
-- **Encoders:** Encoded categorical features and town-to-street mapping.
-- **Dataset:** Processed Singapore resale transaction data.
-- **Images:** Visual assets used in the application.
+Based on the evaluation results, **Random Forest achieved the highest R² and the lowest RMSE and MAE among the three evaluated models.**
 
-## Running the Application
+Therefore, Random Forest was selected for the interactive price prediction application.
 
-### 1. Clone the repository
+The final Random Forest model was trained using 20 estimators and a random state of 42.
+
+## 🏘️ Streamlit Application
+
+The project includes an interactive Streamlit application with three main sections.
+
+### 1. Home
+
+The Home section introduces the project and explains its purpose.
+
+It includes:
+
+- Project overview
+- Singapore images
+- Project objectives
+- Application features
+- Instructions for using the predictor
+
+### 2. Statistics
+
+The Statistics section allows users to explore historical resale transaction data.
+
+Users can:
+
+- View the number of properties available across towns.
+- Explore flat type distributions.
+- Select a town.
+- View average resale prices over the years.
+- Compare resale prices by flat type.
+- Analyze storey range and flat model.
+- Explore combinations of property characteristics.
+
+### 3. Price Predictor
+
+The Price Predictor section allows users to estimate a resale flat's price using property information.
+
+Users can enter:
+
+- Transaction year
+- Floor area
+- Remaining lease
+- Town
+- Street name
+- Flat type
+- Storey range
+- Flat model
+
+The application encodes the categorical inputs using the saved encoders and passes the prepared input to the trained Random Forest model.
+
+The predicted resale price is displayed in the application.
+
+The predictor also displays location information using an interactive Singapore map.
+
+## 🗺️ Interactive Map
+
+The application uses Folium and Streamlit-Folium to display Singapore town locations.
+
+The map provides location context for the selected property and displays relevant town-level information.
+
+## 🚀 Installation
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/SG9822/Singapore_Flat_Price_Prediction.git
+```
+
+```bash
 cd Singapore_Flat_Price_Prediction
 ```
 
-### 2. Install dependencies
+### 2. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install streamlit pandas numpy scikit-learn xgboost plotly folium streamlit-folium streamlit-option-menu pillow pyarrow
 ```
 
-### 3. Configure the project files
+### 3. Verify Required Files
 
-Ensure the processed dataset, trained model, and encoder files are available in the locations expected by the application.
+Ensure the application files and required assets are available:
 
-Update any local file paths in the application before running it on another computer.
+```text
+mainscreen.py
+home.py
+stats.py
+predictor.py
+singapore_data.parquet
+encoders.pkl
+random_forest_model.pkl
+Singapore_1.jpg
+Singapore_2.jpg
+Singapore_3.jpg
+```
 
-### 4. Run Streamlit
+The application requires the processed dataset, saved encoders, trained model, and image files to be accessible.
+
+### 4. Run the Streamlit Application
 
 ```bash
-streamlit run app.py
+streamlit run mainscreen.py
 ```
 
-Use the actual application entry-point filename if it differs from `app.py`.
+The application will open in your browser.
 
-## Project Learning
+## 💡 Example Prediction
 
-This project provided practical experience in:
+The notebook includes an example input with the following encoded property attributes:
 
-- Preparing property transaction data for machine learning
-- Working with categorical and numerical features
-- Comparing regression algorithms
-- Evaluating predictions using regression metrics
-- Saving and loading trained models
-- Building interactive Streamlit applications
-- Creating interactive charts and maps
-- Connecting machine learning outputs with a user-facing application
+```python
+user_input = [[2015, 80, 30, 12, 3, 5, 7, 2]]
+```
 
-## Disclaimer
+The example prediction from the notebook was:
 
-The predicted resale price is a machine learning estimate based on the available dataset and selected property attributes.
+```text
+Predicted resale price: 637200
+```
 
-It is intended for educational and exploratory purposes and should not be treated as an official property valuation or financial advice.
+This is an example output from the notebook, not a guarantee of the price of an actual property.
 
-## Author
+## 📈 Key Learnings
+
+Through this project, I explored:
+
+- Preparing housing transaction data for analysis.
+- Handling categorical variables for machine learning.
+- Comparing regression models using multiple evaluation metrics.
+- Understanding the importance of model selection.
+- Building interactive analytical applications using Streamlit.
+- Connecting machine learning predictions with user inputs.
+- Presenting data insights through charts and maps.
+
+## 🔮 Future Improvements
+
+Potential improvements include:
+
+- Deploying the Streamlit application publicly.
+- Improving the application layout and user experience.
+- Refining the model through further experimentation.
+- Improving data and model loading workflows.
+- Adding additional property comparisons and analytical views.
+- Making the application easier to run across different environments.
+
+## 👨‍💻 Author
 
 **Shanmugagouthaman KR**
 
 GitHub: [SG9822](https://github.com/SG9822)
+
+---
+
+*This project was developed as an individual academic project to explore data analytics, machine learning, and interactive application development using Singapore HDB resale transaction data.*
